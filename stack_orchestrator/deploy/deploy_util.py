@@ -16,7 +16,7 @@
 import os
 from typing import List, Any
 from stack_orchestrator.deploy.deploy_types import DeployCommandContext, VolumeMapping
-from stack_orchestrator.util import get_parsed_stack_config, get_yaml, get_internal_compose_file_dir, get_pod_list, resolve_compose_file
+from stack_orchestrator.util import get_parsed_stack_config, get_yaml, get_pod_list, resolve_compose_file
 from stack_orchestrator.opts import opts
 
 

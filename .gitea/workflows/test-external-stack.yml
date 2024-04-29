@@ -56,4 +56,3 @@ jobs:
           notify_when: 'failure'
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.DEEPSTACK_SLACK_CI_ALERTS }}
-

@@ -3,7 +3,7 @@ set -e
 if [ -n "$CERC_SCRIPT_DEBUG" ]; then
   set -x
 fi
-set -e
+
 echo "Running stack-orchestrator Ethereum plugeth fixturenet test"
 # Bit of a hack, test the most recent package
 TEST_TARGET_SO=$( ls -t1 ./package/laconic-so* | head -1 )
@@ -20,8 +20,16 @@ echo "Building containers"
 $TEST_TARGET_SO  --stack $CERC_STACK_NAME build-containers
 echo "Images in registry:"
 docker image ls
+
 echo "Deploying the cluster"
-$TEST_TARGET_SO --stack $CERC_STACK_NAME deploy up
+if ! $TEST_TARGET_SO --stack $CERC_STACK_NAME deploy up; then
+  failed_containers=$(docker ps -q --filter health=unhealthy --filter status=running)
+  for c in $failed_containers; do
+    docker logs $c --tail 20
+  done
+  exit 1
+fi
+
 # Verify that the fixturenet is up and running
 $TEST_TARGET_SO --stack $CERC_STACK_NAME deploy ps
 $TEST_TARGET_SO --stack $CERC_STACK_NAME deploy exec fixturenet-eth-bootnode-lighthouse /scripts/status-internal.sh

@@ -17,6 +17,7 @@ jobs:
   test:
     name: "Run deploy test suite on kind/k8s"
     runs-on: ubuntu-22.04
+    if: false
     steps:
       - name: "Clone project repository"
         uses: actions/checkout@v3

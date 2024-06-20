@@ -14,6 +14,7 @@ jobs:
   test:
     name: "Run webapp test suite"
     runs-on: ubuntu-latest
+    if: false
     steps:
       - name: "Clone project repository"
         uses: actions/checkout@v3

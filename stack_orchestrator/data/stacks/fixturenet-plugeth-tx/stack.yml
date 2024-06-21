@@ -2,7 +2,7 @@ version: "1.2"
 name: fixturenet-plugeth-tx
 description: "plugeth Ethereum Fixturenet w/ tx-spammer"
 repos:
-  - git.vdb.to/cerc-io/plugeth@statediff
+  - git.vdb.to/cerc-io/plugeth@statediff-patches
   - git.vdb.to/cerc-io/plugeth-statediff
   - git.vdb.to/cerc-io/lighthouse
   - git.vdb.to/cerc-io/ipld-eth-db@v5
